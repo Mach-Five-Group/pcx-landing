@@ -37,16 +37,21 @@
        ===================== */
     .serif{font-family: Georgia, "Times New Roman", Times, serif}
     h1,h2,h3{font-family: Georgia, "Times New Roman", Times, serif; color:var(--navy); line-height:1.25; margin:0 0 .5rem}
-    h1{font-size:clamp(2rem, 3.2vw, 2.8rem)}
-    h2{font-size:clamp(1.5rem, 2.5vw, 1.875rem)}
-    h3{font-size:1.25rem}
-    p{margin:.5rem 0 1rem; font-size:1.05rem}
+    h1{font-size:clamp(1.75rem, 4vw, 2.8rem)}
+    h2{font-size:clamp(1.35rem, 3vw, 1.875rem)}
+    h3{font-size:clamp(1.1rem, 2vw, 1.25rem)}
+    p{margin:.5rem 0 1rem; font-size:clamp(1rem, 1.5vw, 1.05rem)}
     .muted{color:var(--steel)}
+    @media (max-width:640px){
+      h1{margin-bottom:1rem}
+      p{line-height:1.65}
+    }
 
     /* =====================
        Layout utilities
        ===================== */
     .container{max-width:1320px; margin-inline:auto; padding:0 1.5rem}
+    @media (max-width:640px){.container{padding:0 1rem}}
     .stack-2> * + *{margin-top:.5rem}
     .stack-3> * + *{margin-top:1rem}
     .stack-4> * + *{margin-top:1.5rem}
@@ -54,9 +59,13 @@
     .rule{border-top:1px solid var(--line)}
     .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
     .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
-    @media (max-width:820px){
+    @media (max-width:1024px){
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:768px){
       .grid-3{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
+      .stack-xl{grid-template-columns:1fr !important}
     }
 
     /* =====================
@@ -66,16 +75,51 @@
     .skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:#fff; padding:.5rem .75rem; border:2px solid var(--focus); border-radius:.25rem; z-index:10}
 
     header{
-      position:sticky; top:0; z-index:5; backdrop-filter:saturate(1.1) blur(4px);
-      background:rgba(247,247,245,.9); border-bottom:1px solid var(--line)
+      position:sticky; top:0; z-index:999; backdrop-filter:saturate(1.1) blur(4px);
+      background:rgba(247,247,245,.95); border-bottom:1px solid var(--line)
     }
-    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px; position:relative}
     .brand{display:flex; align-items:center; gap:.5rem; font-weight:700; letter-spacing:.5px}
     .brand-mark{width:42px; height:32px; border:2px solid var(--navy); border-radius:3px; display:grid; place-items:center; font-size:0.85rem; color:var(--navy); font-weight:700; letter-spacing:-0.5px}
-    nav a{display:inline-block; padding:.5rem .75rem; text-decoration:none; border-radius:.25rem; font-size:1.05rem}
+    nav{display:flex; align-items:center; gap:0.5rem}
+    nav a{display:inline-block; padding:.5rem .75rem; text-decoration:none; border-radius:.25rem; font-size:1.05rem; white-space:nowrap}
     nav a:focus, nav a:hover{outline:2px solid transparent; background:#fff; box-shadow:0 0 0 2px var(--focus) inset}
     nav a.nav-login{background:var(--accent); color:white; margin-left:.5rem; font-weight:600}
     nav a.nav-login:hover{background:var(--accent-ink); box-shadow:none}
+
+    /* Hide some nav items on desktop to avoid crowding */
+    @media (min-width:769px) and (max-width:1024px){
+      nav a:nth-child(2), nav a:nth-child(3){display:none}
+    }
+
+    /* Mobile Navigation */
+    .mobile-menu-toggle{
+      display:none;
+      background:white;
+      border:2px solid var(--navy);
+      padding:0.5rem;
+      cursor:pointer;
+      border-radius:0.25rem;
+      color:var(--navy);
+      transition: all 0.2s;
+    }
+    .mobile-menu-toggle:hover {
+      background:var(--navy);
+      color:white;
+    }
+    .mobile-menu-toggle svg {
+      display:block;
+      width:24px;
+      height:24px;
+    }
+    @media (max-width:768px){
+      .mobile-menu-toggle{display:block}
+      nav{position:absolute; top:100%; left:0; right:0; background:rgba(247,247,245,.98); border-bottom:1px solid var(--line); padding:1rem; flex-direction:column; align-items:stretch; display:none; box-shadow:0 4px 6px rgba(0,0,0,0.1); z-index:998}
+      nav.active{display:flex}
+      nav a{width:100%; text-align:center; padding:0.75rem; border-bottom:1px solid rgba(0,0,0,0.05)}
+      nav a:last-child{border-bottom:none}
+      nav a.nav-login{margin:0.5rem 0 0 0; border-bottom:none}
+    }
 
     /* =====================
        Hero
@@ -83,20 +127,26 @@
     .hero{
       padding:6rem 0 5.5rem;
       position:relative;
-      background-color: #F4E8D8;
+      background-color: #1a3a52;
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E"),
-        linear-gradient(90deg, rgba(180,160,140,0.35) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(180,160,140,0.35) 1px, transparent 1px),
-        linear-gradient(rgba(244,232,216,0.65), rgba(244,232,216,0.75)),
-        url("https://images.unsplash.com/photo-1593115057322-e94b77572f20?w=2000&q=85");
-      background-size: 200px 200px, 25px 25px, 25px 25px, cover, 1400px auto;
+        linear-gradient(90deg, rgba(26,58,82,0.35) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(26,58,82,0.35) 1px, transparent 1px),
+        linear-gradient(rgba(26,58,82,0.85), rgba(16,40,60,0.95)),
+        url("https://images.unsplash.com/photo-1436450412740-6b988f486c6b?w=2000&q=85");
+      background-size: 200px 200px, 25px 25px, 25px 25px, cover, cover;
       background-position: 0 0, -1px -1px, -1px -1px, center, center top;
       background-repeat: repeat, repeat, repeat, no-repeat, no-repeat;
       background-attachment: scroll, scroll, scroll, scroll, fixed;
       overflow:hidden;
-      border-bottom: 2px solid rgba(200,180,160,0.3);
+      border-bottom: 2px solid rgba(26,58,82,0.3);
       min-height: 550px;
+    }
+    @media (max-width:768px){
+      .hero{padding:4rem 0 3.5rem; min-height:450px; background-attachment:scroll}
+    }
+    @media (max-width:640px){
+      .hero{padding:3rem 0 2.5rem; min-height:400px}
     }
     .hero::before{
       content:'';
@@ -104,15 +154,15 @@
       top:0; left:0; right:0; bottom:0;
       background:
         linear-gradient(90deg,
-          rgba(244,232,216,1) 0%,
-          rgba(244,232,216,0.95) 10%,
-          rgba(244,232,216,0.7) 20%,
-          rgba(244,232,216,0) 30%,
-          rgba(244,232,216,0) 70%,
-          rgba(244,232,216,0.7) 80%,
-          rgba(244,232,216,0.95) 90%,
-          rgba(244,232,216,1) 100%),
-        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(244,232,216,0.05) 100%);
+          rgba(26,58,82,1) 0%,
+          rgba(26,58,82,0.95) 10%,
+          rgba(26,58,82,0.7) 20%,
+          rgba(26,58,82,0) 30%,
+          rgba(26,58,82,0) 70%,
+          rgba(26,58,82,0.7) 80%,
+          rgba(26,58,82,0.95) 90%,
+          rgba(26,58,82,1) 100%),
+        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(26,58,82,0.05) 100%);
       pointer-events:none;
     }
     .hero::after{
@@ -121,19 +171,23 @@
       top:0; left:0; right:0; bottom:0;
       opacity: 0.15;
       background-image:
-        radial-gradient(circle at 1px 1px, rgba(140,120,100,0.5) 1px, transparent 1px);
+        radial-gradient(circle at 1px 1px, rgba(100,140,180,0.5) 1px, transparent 1px);
       background-size: 3px 3px;
       pointer-events:none;
     }
     .hero-content{display:grid; grid-template-columns:1.2fr 0.8fr; gap:4rem; align-items:center; position:relative; z-index:1}
     @media (max-width:920px){.hero-content{grid-template-columns:1fr; gap:3rem; text-align:center}}
+    @media (max-width:640px){.hero-content{gap:2rem}}
     .hero-logo{width:280px; height:auto; opacity:0; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1)); animation: fadeIn 1.2s ease-out 0.3s forwards}
     @media (max-width:920px){.hero-logo{width:220px; margin:0 auto}}
+    @media (max-width:640px){.hero-logo{width:180px}}
     .lead{max-width:none}
     .lead h1{margin-bottom:1.25rem; line-height:1.3}
     .lead p{font-size:1.15rem; line-height:1.7; margin-bottom:2rem}
     .cta-row{display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap}
     @media (max-width:920px){.cta-row{justify-content:center}}
+    @media (max-width:640px){.cta-row{flex-direction:column; width:100%; gap:1rem}
+      .cta-row .btn, .cta-row .btn-secondary{width:100%; text-align:center}}
     .btn{appearance:none; border:0; background:var(--accent); color:#fff; padding:.85rem 1.25rem; border-radius:.4rem; font-weight:600; cursor:pointer; font-size:1.05rem; text-decoration:none; display:inline-block}
     .btn:hover{background:var(--accent-ink)}
     .btn:focus{outline:3px solid var(--focus)}
@@ -167,6 +221,8 @@
        Sections
        ===================== */
     section{padding:2.5rem 0}
+    @media (max-width:768px){section{padding:2rem 0}}
+    @media (max-width:640px){section{padding:1.5rem 0}}
     .section-title{display:flex; align-items:center; gap:.6rem; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 600; letter-spacing: -0.02em;}
     .section-title .rule{flex:1}
 
@@ -363,9 +419,10 @@
     /* Dashboard Mockup */
     .dashboard-mockup {
       background: rgba(255, 255, 255, 0.98);
-      overflow: hidden;
+      overflow: visible;
       flex: 1;
-      height: 550px;
+      min-height: 680px;
+      height: auto;
     }
 
     .dashboard-header {
@@ -399,18 +456,21 @@
     }
 
     .dashboard-content {
-      padding: 2rem;
+      padding: 1.5rem;
       background: linear-gradient(135deg, #FAFAF8 0%, white 100%);
-      height: 490px;
-      overflow: hidden;
+      min-height: 580px;
+      height: auto;
+      overflow: visible;
     }
 
     /* Dashboard Screens */
     .dashboard-screen {
-      height: 100%;
+      min-height: 580px;
       animation: fadeIn 0.5s ease-in-out;
       display: flex;
       flex-direction: column;
+      padding: 1rem;
+      overflow: visible;
     }
 
     @keyframes fadeIn {
@@ -419,10 +479,10 @@
     }
 
     .screen-title {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--navy);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       text-align: center;
     }
 
@@ -488,35 +548,55 @@
     .badge-preview {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100%;
+      align-items: flex-start;
+      min-height: 520px;
+      padding: 1rem;
+      overflow: visible;
     }
 
     .patent-badge-large {
-      background: linear-gradient(135deg, var(--navy) 0%, #1E3A5F 100%);
-      border: 2px solid var(--accent);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      background: #FFFFFF;
+      border: 2px solid #D4AF37;
+      border-radius: 8px;
+      padding: 1.25rem;
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
       width: 100%;
-      color: white;
+      max-width: 340px;
+      position: relative;
+      overflow: visible;
+      margin: auto;
+    }
+
+    .patent-badge-large::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+      border-radius: 8px 8px 0 0;
     }
 
     .patent-badge-large .badge-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--line);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #D4AF37;
+      position: relative;
     }
 
     .patent-badge-large .patent-number {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF;
       letter-spacing: 0.5px;
+      font-family: 'Georgia', serif;
     }
 
     .patent-number {
@@ -526,12 +606,13 @@
     }
 
     .badge-rank {
-      background: var(--accent);
+      background: #D4AF37;
       color: white;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3px;
     }
 
     .badge-details {
@@ -547,7 +628,16 @@
     }
 
     .patent-badge-large .badge-row {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .patent-badge-large .badge-row:last-child {
+      border-bottom: none;
     }
 
     .patent-badge-large .badge-row:last-child {
@@ -555,17 +645,24 @@
     }
 
     .patent-badge-large .badge-row .label {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.9rem;
+      color: #8B7355;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
 
     .patent-badge-large .badge-row .value {
       font-weight: 600;
-      color: white;
+      color: #2C2416;
+      font-size: 0.7rem;
+      text-align: right;
     }
 
     .patent-badge-large .badge-row .value.success {
-      color: #27c93f;
+      color: #4A7C4E;
+      font-weight: 600;
+      font-size: 0.7rem;
     }
 
     .badge-row .label {
@@ -749,12 +846,144 @@
       transform: translateY(-50%) scale(1.1);
     }
 
+    /* Hide arrow labels on desktop */
+    .arrow-label {
+      display: none;
+    }
+
     #prev-screen {
       left: -60px;
     }
 
     #next-screen {
       right: -60px;
+    }
+
+    #prev-badge {
+      left: -60px;
+    }
+
+    #next-badge {
+      right: -60px;
+    }
+
+    /* Badge Carousel Container */
+    .badge-carousel {
+      position: relative;
+    }
+
+    /* Mobile: Position arrows above/below content */
+    @media (max-width: 768px) {
+      /* Adjust containers for mobile arrow positioning */
+      .badge-carousel {
+        margin: 60px 0;
+      }
+
+      .dashboard-preview {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+
+      /* Reposition all navigation arrows for mobile */
+      .nav-arrow-external {
+        width: 120px;
+        height: 40px;
+        border-radius: 20px;
+        background: var(--navy);
+        color: white;
+        border-color: var(--navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      /* Show arrow labels on mobile */
+      .arrow-label {
+        display: inline;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Badge carousel arrows - top and bottom */
+      #prev-badge {
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #prev-badge svg {
+        transform: rotate(-90deg);
+      }
+
+      #next-badge {
+        bottom: -50px;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #next-badge svg {
+        transform: rotate(-90deg);
+      }
+
+      /* Dashboard preview arrows - top and bottom */
+      #prev-screen {
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #prev-screen svg {
+        transform: rotate(-90deg);
+      }
+
+      #next-screen {
+        bottom: -50px;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      #next-screen svg {
+        transform: rotate(-90deg);
+      }
+
+      /* Hover state for mobile arrows */
+      .nav-arrow-external:hover {
+        transform: translateX(-50%) scale(1.05);
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      #prev-badge:hover, #next-badge:hover,
+      #prev-screen:hover, #next-screen:hover {
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+
+    /* Very small screens */
+    @media (max-width: 480px) {
+      .nav-arrow-external {
+        width: 100px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+
+      #prev-badge, #next-badge,
+      #prev-screen, #next-screen {
+        top: auto;
+        bottom: auto;
+      }
+
+      #prev-badge, #prev-screen {
+        top: -45px;
+      }
+
+      #next-badge, #next-screen {
+        bottom: -45px;
+        top: auto;
+      }
     }
 
     /* Browser Window */
@@ -949,6 +1178,261 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .modal-header {
+      border-bottom: 2px solid #D4AF37;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-field {
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-label {
+      font-size: 0.8rem;
+      color: #8B7355;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .modal-value {
+      font-size: 1rem;
+      color: #1A1A1A;
+      font-weight: 500;
+    }
+
+    /* Viewport Fade In Animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-section .container > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition-delay: 0.1s;
+    }
+
+    .fade-in-section.visible .container > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-section.visible .container > *:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .fade-in-section.visible .container > *:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    /* Additional Mobile Responsive Improvements */
+    @media (max-width: 640px) {
+      /* Activity items */
+      .licensing-activity {
+        overflow-x: auto;
+      }
+
+      .activity-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      /* Badge details */
+      .badge-details {
+        font-size: 0.85rem;
+      }
+
+      .badge-row {
+        padding: 0.4rem 0;
+      }
+
+      /* Impact stats */
+      .stats-grid {
+        gap: 0.75rem;
+      }
+
+      /* FAQ items */
+      details.soft {
+        padding: 0.75rem;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+      }
+
+      footer .container > div {
+        justify-content: center;
+      }
+
+      /* Dashboard screens */
+      .dashboard-screen {
+        padding: 1.5rem 1rem;
+      }
+
+      .stat-card {
+        padding: 1rem;
+      }
+
+      /* Contract card */
+      .contract-card {
+        padding: 1rem;
+      }
+    }
+
+    /* Very small screens (below 480px) */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.75rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .btn, .btn-secondary {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .trust-row {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        padding: 0.75rem;
+      }
+
+      section {
+        padding: 1.25rem 0;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
+
+      /* Hero adjustments */
+      .hero {
+        padding: 2.5rem 0 2rem;
+        min-height: auto;
+      }
+
+      .hero-logo {
+        width: 150px;
+      }
+
+      /* Patent badge */
+      .patent-badge-large {
+        max-width: 260px;
+      }
+
+      /* Dashboard mockup */
+      .dashboard-mockup {
+        min-height: 300px;
+      }
+
+      .screen-title {
+        font-size: 1rem;
+      }
+
+      /* Form adjustments */
+      form {
+        padding: 1rem;
+      }
+
+      input, select, textarea {
+        padding: 0.65rem 0.75rem;
+        font-size: 16px; /* Prevent zoom on iOS */
+      }
+
+    }
+
+    /* Landscape orientation for mobile */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        min-height: 350px;
+        padding: 2rem 0;
+      }
+
+      .hero-content {
+        gap: 2rem;
+      }
+
+      section {
+        padding: 1.5rem 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -958,12 +1442,16 @@
       <div class="brand" aria-label="Site brand">
         <span class="brand-mark" aria-hidden="true">PCX</span>
         <span style="margin: 0 0.4rem; color: var(--steel);">by</span>
-        <span><!-- TODO: Replace wordmark -->PatentContract.com</span>
+        <span><!-- TODO: Replace wordmark -->PatentBadge.com</span>
       </div>
-      <nav>
-        <a href="#contact">Request Early Access</a>
-        <a href="https://app.patentcontract.com/sample-badge" target="_blank">Sample Badge</a>
-        <a href="#contact">Contact</a>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+      <nav id="mainNav">
+        <a href="#contact">PCX - Request Early Access</a>
+        <a href="#contact">Sign Up</a>
         <a href="https://app.patentcontract.com/login" class="nav-login">Login</a>
       </nav>
     </div>
@@ -975,11 +1463,11 @@
       <div class="container">
         <div class="hero-content">
           <div class="stack-3 lead">
-            <h1>The Patent License Option Contract Exchange</h1>
-            <p class="muted">A marketplace where patent holders list their technologies with standardized terms, and companies efficiently secure the licenses they need—without months of negotiation.</p>
+            <h1 style="color: white;">Patent Contract Exchange (PCX) & PatentBadge</h1>
+            <p style="color: rgba(255,255,255,0.9);">Securing for patentees exclusive rights to their discoveries.</p>
             <div class="cta-row">
-              <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">Request Early Access</button>
-              <a href="#sample" class="btn-secondary">View Sample Patent Badge</a>
+              <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">PCX - Request Early Access</button>
+              <a href="#sample" class="btn-secondary">Generate PatentBadge</a>
             </div>
           </div>
           <img src="Logo-Transparent.png" alt="PCX Logo" class="hero-logo">
@@ -1000,21 +1488,21 @@
             <div class="stat-visual">
               <div class="stat-number-huge">1.5<span class="percent">%</span></div>
             </div>
-            <h3>Patents Ever Monetized</h3>
+            <h3 class="serif">Patents Ever Monetized</h3>
             <p class="muted">Of the 2.1 million active US patents, only 31,500 have ever generated revenue through licensing or assertion.</p>
           </div>
           <div class="stat-card-large">
             <div class="stat-visual">
               <div class="stat-number-huge">95<span class="percent">%</span></div>
             </div>
-            <h3>Unlicensed Innovation</h3>
+            <h3 class="serif">Unlicensed Innovation</h3>
             <p class="muted">Breakthrough technologies remain locked away, preventing collaboration and stifling industry advancement.</p>
           </div>
           <div class="stat-card-large">
             <div class="stat-visual">
               <div class="stat-number-huge">18<span class="months">mo</span></div>
             </div>
-            <h3>Average Licensing Timeline</h3>
+            <h3 class="serif">Average Licensing Timeline</h3>
             <p class="muted">Complex negotiations and unclear valuations create massive delays in bringing innovations to market.</p>
           </div>
         </div>
@@ -1042,10 +1530,142 @@
       </div>
     </section>
 
+    <!-- SAMPLE PATENT BADGE -->
+    <section id="sample" style="background: var(--paper); padding: 3rem 0;">
+      <div class="container stack-4">
+        <h2 class="section-title">PatentBadge Examples <span class="rule"></span></h2>
+        <div style="position: relative;">
+          <button class="nav-arrow-external" id="prev-badge" aria-label="Previous badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="arrow-label">Previous</span>
+          </button>
+          <button class="nav-arrow-external" id="next-badge" aria-label="Next badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="arrow-label">Next</span>
+          </button>
+        <div class="badge-carousel">
+        <!-- Badge 1 -->
+        <div class="patent-badge-container" data-badge="1" style="max-width: 400px; margin: 0 auto;">
+          <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; margin-top: 0.5rem;">
+              <img src="Logo-Transparent.png" alt="PCX" style="height: 32px; width: auto; opacity: 0.8;">
+              <div style="font-size: 0.7rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37;">
+              <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654B2</span>
+              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#3 / 1000</span>
+            </div>
+            <div class="badge-details">
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Litigation</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">No History</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">SEP Status</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Standard Essential</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Maintenance</span>
+                <span style="font-weight: 600; color: #4A7C4E; font-size: 0.75rem; text-align: right;">✓ 3.5, 7.5 yrs</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">3.5-7.5%</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Prior Art</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Reviewed</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Claim Scope</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Broad</span>
+              </div>
+            </div>
+            <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+              <button class="btn" style="flex: 1;" onclick="showLicenseTerms('US10,987,654B2')">View Full License Terms</button>
+              <button class="btn-secondary" style="flex: 1;">Request License</button>
+            </div>
+            <div data-extra-info="US10,987,654B2" style="display: none;">
+              <div data-field="tech-category">Machine Learning</div>
+              <div data-field="license-type">Non-Exclusive</div>
+              <div data-field="minimum-annual">$50,000</div>
+              <div data-field="patent-holder">TechVentures Inc.</div>
+              <div data-field="priority-date">March 15, 2021</div>
+              <div data-field="expiration">March 15, 2041</div>
+              <div data-field="territory">United States</div>
+              <div data-field="description">Neural Network Architecture for Real-Time Data Processing - This patent covers innovative methods for optimizing neural network performance in edge computing environments, enabling real-time processing with reduced computational requirements.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Badge 2 -->
+        <div class="patent-badge-container" data-badge="2" style="display: none; max-width: 400px; margin: 0 auto;">
+          <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; margin-top: 0.5rem;">
+              <img src="Logo-Transparent.png" alt="PCX" style="height: 32px; width: auto; opacity: 0.8;">
+              <div style="font-size: 0.7rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37;">
+              <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US11,234,567B1</span>
+              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#1 / 1000</span>
+            </div>
+            <div class="badge-details">
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Litigation</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">1 Case (Won)</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">SEP Status</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">5G Standard</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Maintenance</span>
+                <span style="font-weight: 600; color: #4A7C4E; font-size: 0.75rem; text-align: right;">✓ All Current</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">2.0-4.5%</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Prior Art</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Validated</span>
+              </div>
+              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Claim Scope</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Essential</span>
+              </div>
+            </div>
+            <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
+              <button class="btn" style="flex: 1;" onclick="showLicenseTerms('US11,234,567B1')">View Full License Terms</button>
+              <button class="btn-secondary" style="flex: 1;">Request License</button>
+            </div>
+            <div data-extra-info="US11,234,567B1" style="display: none;">
+              <div data-field="tech-category">Wireless Communications</div>
+              <div data-field="license-type">Standard Essential Patent</div>
+              <div data-field="minimum-annual">$75,000</div>
+              <div data-field="patent-holder">NextGen Networks LLC</div>
+              <div data-field="priority-date">June 22, 2022</div>
+              <div data-field="expiration">June 22, 2042</div>
+              <div data-field="territory">United States</div>
+              <div data-field="description">5G Network Optimization Protocol for IoT Devices - Revolutionary protocol for optimizing 5G network efficiency in high-density IoT deployments, reducing latency by up to 40% while maintaining ultra-low power consumption for battery-operated devices.</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
     <!-- HOW IT WORKS -->
     <section id="how">
       <div class="container stack-5">
-        <h2 class="section-title">How It Works <span class="rule"></span></h2>
+        <h2 class="section-title">Patent License Option Contract Exchange (PCX) <span class="rule"></span></h2>
+        <p style="font-size: 1.25rem; color: var(--steel); max-width: 800px; margin: 0 auto 3rem; padding: 1rem 0; text-align: center; line-height: 1.7;">A marketplace where patent holders list their technologies with standardized terms, and companies efficiently secure the licenses they need without months of negotiation.</p>
         <div class="grid-3">
           <div class="card stack-2">
             <div class="step-icon">
@@ -1053,11 +1673,11 @@
                 <path d="M9 12h6m-3-3v6m5 5H7a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v11a2 2 0 01-2 2z"/>
               </svg>
             </div>
-            <h3>1) Post Your Patent</h3>
-            <p class="muted">Upload patent details with standardized license terms and transparent pricing.</p>
+            <h3 class="serif">1) Create Your PatentBadge</h3>
+            <p class="muted">Upload your patent details and receive a verified Patent Badge that showcases your technology.</p>
             <div class="step-details">
-              <div class="detail-item">✓ Automated form fills</div>
               <div class="detail-item">✓ USPTO verification</div>
+              <div class="detail-item">✓ Technology ranking</div>
               <div class="detail-item">✓ Instant validation</div>
             </div>
           </div>
@@ -1067,12 +1687,12 @@
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
-            <h3>2) Badge Generation</h3>
-            <p class="muted">Receive a Patent Badge after our 60-day review period, establishing your listing.</p>
+            <h3 class="serif">2) List on PCX Marketplace</h3>
+            <p class="muted">Your Patent Badge becomes available on the PCX marketplace with standardized licensing terms.</p>
             <div class="step-details">
-              <div class="detail-item">✓ Ranking algorithm</div>
-              <div class="detail-item">✓ Royalty rate setting</div>
-              <div class="detail-item">✓ Authentication seal</div>
+              <div class="detail-item">✓ Pre-set royalty rates</div>
+              <div class="detail-item">✓ Transparent pricing</div>
+              <div class="detail-item">✓ 60-day review period</div>
             </div>
           </div>
           <div class="card stack-2">
@@ -1081,10 +1701,10 @@
                 <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
-            <h3>3) Execute Licenses</h3>
-            <p class="muted">Companies purchase options to license your technology with pre-negotiated terms.</p>
+            <h3 class="serif">3) Monetize Your Patents</h3>
+            <p class="muted">Companies purchase license options through PCX, generating revenue from your patent portfolio.</p>
             <div class="step-details">
-              <div class="detail-item">✓ $2,895/month revenue</div>
+              <div class="detail-item">✓ Thousands in monthly revenue</div>
               <div class="detail-item">✓ Multi-party licensing</div>
               <div class="detail-item">✓ Automated contracts</div>
             </div>
@@ -1093,10 +1713,11 @@
 
         <!-- Interactive Dashboard Preview -->
         <div class="dashboard-preview">
-          <button class="nav-arrow-external" id="prev-screen">
+          <button class="nav-arrow-external" id="prev-screen" aria-label="Previous screen">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+            <span class="arrow-label">Previous</span>
           </button>
           <div class="browser-window">
             <div class="browser-top-bar">
@@ -1143,22 +1764,38 @@
                 <div class="screen-title">Patent Badge Generated</div>
                 <div class="badge-preview">
                   <div class="patent-badge-large">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                      <img src="Logo-Transparent.png" alt="PCX" style="height: 28px; width: auto; opacity: 0.8;">
+                      <div style="font-size: 0.6rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
+                    </div>
                     <div class="badge-header">
                       <span class="patent-number">US10,123,456</span>
-                      <span class="badge-rank">#47/1000</span>
+                      <span class="badge-rank">#47 / 1000</span>
                     </div>
                     <div class="badge-details">
                       <div class="badge-row">
-                        <span class="label">SEP Status:</span>
+                        <span class="label">Litigation</span>
+                        <span class="value">No History</span>
+                      </div>
+                      <div class="badge-row">
+                        <span class="label">SEP Status</span>
                         <span class="value">Standard Essential</span>
                       </div>
                       <div class="badge-row">
-                        <span class="label">Maintenance:</span>
-                        <span class="value success">Current</span>
+                        <span class="label">Maintenance</span>
+                        <span class="value success">✓ 3.5, 7.5 yrs</span>
                       </div>
                       <div class="badge-row">
-                        <span class="label">Royalty Rate:</span>
+                        <span class="label">Royalty Rate</span>
                         <span class="value">3.5-7.5%</span>
+                      </div>
+                      <div class="badge-row">
+                        <span class="label">Prior Art</span>
+                        <span class="value">Reviewed</span>
+                      </div>
+                      <div class="badge-row">
+                        <span class="label">Claim Scope</span>
+                        <span class="value">Broad</span>
                       </div>
                     </div>
                   </div>
@@ -1224,10 +1861,11 @@
             </div>
             </div>
           </div>
-          <button class="nav-arrow-external" id="next-screen">
+          <button class="nav-arrow-external" id="next-screen" aria-label="Next screen">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+            <span class="arrow-label">Next</span>
           </button>
         </div>
       </div>
@@ -1244,7 +1882,7 @@
               <path d="M12 7a2 2 0 012 2c0 .74-.4 1.39-1 1.73V14h-2v-3.27c-.6-.34-1-.99-1-1.73a2 2 0 012-2z"/>
               <path d="M10 17h4"/>
             </svg>
-            <h3>For Patent Holders</h3>
+            <h3 class="serif">For Patent Holders</h3>
             <p class="muted">Monetize your patents through a streamlined marketplace. Set your terms once, reach multiple licensees.</p>
           </div>
           <div class="card">
@@ -1254,7 +1892,7 @@
               <path d="M12 12h.01"/>
               <path d="M3 12h18"/>
             </svg>
-            <h3>For Corporations</h3>
+            <h3 class="serif">For Corporations</h3>
             <p class="muted">Access pre-vetted patents with clear licensing terms. Execute agreements efficiently without lengthy negotiations.</p>
           </div>
           <div class="card">
@@ -1265,7 +1903,7 @@
               <path d="M8 17h8"/>
               <path d="M8 9h2"/>
             </svg>
-            <h3>For Legal Teams</h3>
+            <h3 class="serif">For Legal Teams</h3>
             <p class="muted">Standardized contracts reduce review time. Track all patent activity through a unified dashboard.</p>
           </div>
         </div>
@@ -1309,80 +1947,11 @@
       </div>
     </section>
 
-    <!-- SAMPLE PATENT BADGE -->
-    <section id="sample" style="background: var(--paper); padding: 3rem 0;">
-      <div class="container stack-4">
-        <h2 class="section-title">Sample Patent Badge <span class="rule"></span></h2>
-        <div class="patent-badge-container">
-          <div class="badge-header">
-            <div class="badge-title">
-              <span class="pcx-badge-logo">PCX VERIFIED</span>
-              <span class="patent-number">US10,987,654B2</span>
-            </div>
-            <span class="badge-status">ACTIVE</span>
-          </div>
-          <div class="badge-content" style="position: relative;">
-            <img src="Logo-Transparent.png" alt="PCX" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 600px; width: auto; opacity: 0.08; pointer-events: none; z-index: 0;">
-            <div class="badge-info-grid" style="position: relative; z-index: 1;">
-              <div class="badge-info-item">
-                <div class="badge-label">Technology Category</div>
-                <div class="badge-value">Machine Learning</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">License Type</div>
-                <div class="badge-value">Non-Exclusive</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">Royalty Rate</div>
-                <div class="badge-value">3.5% - 7.5%</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">Minimum Annual</div>
-                <div class="badge-value">$50,000</div>
-              </div>
-            </div>
-            <div class="badge-description" style="position: relative; z-index: 1;">
-              <h4 style="margin-bottom: 0.75rem; color: var(--navy);">Neural Network Architecture for Real-Time Data Processing</h4>
-              <p style="color: var(--steel); line-height: 1.6; margin-bottom: 0;">This patent covers innovative methods for optimizing neural network performance in edge computing environments, enabling real-time processing with reduced computational requirements.</p>
-            </div>
-            <div class="badge-info-grid" style="position: relative; z-index: 1;">
-              <div class="badge-info-item">
-                <div class="badge-label">Patent Holder</div>
-                <div class="badge-value">TechVentures Inc.</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">Priority Date</div>
-                <div class="badge-value">March 15, 2021</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">Expiration</div>
-                <div class="badge-value">March 15, 2041</div>
-              </div>
-              <div class="badge-info-item">
-                <div class="badge-label">Territory</div>
-                <div class="badge-value">United States</div>
-              </div>
-            </div>
-            <div class="badge-actions" style="position: relative; z-index: 1;">
-              <button class="btn" style="flex: 1;">View Full License Terms</button>
-              <button class="btn-secondary" style="flex: 1;">Request License</button>
-            </div>
-            <div class="badge-verification">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-              </svg>
-              <span>Verified by PCX on January 10, 2025 • Ranked #3 in Machine Learning</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- LEAD FORM -->
-    <section id="contact">
+    <section id="contact" class="fade-in-section">
       <div class="container grid-2">
         <div class="stack-3">
-          <h2 class="section-title">Request Early Access <span class="rule"></span></h2>
+          <h2 class="section-title">PCX - Request Early Access <span class="rule"></span></h2>
           <p class="muted">We'll reach out within 2–3 business days.</p>
           <form id="lead" novalidate>
             <div class="error" id="formError" role="alert">Please complete the required fields.</div>
@@ -1420,7 +1989,7 @@
               <textarea id="notes" name="notes" rows="4" placeholder="Tell us about your patent licensing needs"></textarea>
             </div>
             <div class="stack-2" style="margin-top:1rem">
-              <button class="btn" type="submit">Request Early Access</button>
+              <button class="btn" type="submit">PCX - Request Early Access</button>
               <div class="success" id="successMsg" role="status">Thanks—your request was received. We'll be in touch shortly.</div>
             </div>
             <p class="help muted">By submitting, you agree to be contacted about early access. <!-- TODO: Link Terms & Privacy once finalized. --></p>
@@ -1431,7 +2000,7 @@
             <h3 class="serif">Transform Your Patent Portfolio Today</h3>
           </div>
           <div class="callout-body">
-            <p class="callout-lead">Stop leaving millions on the table. PCX turns your dormant patents into active revenue streams with transparent, automated licensing.</p>
+            <p class="callout-lead">PCX turns your dormant patents into active revenue streams with transparent, automated licensing.</p>
             <div class="feature-list">
               <div class="feature-item">
                 <svg class="feature-icon" viewBox="0 0 16 16" fill="currentColor">
@@ -1469,17 +2038,26 @@
     </section>
 
     <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section id="faq" style="background: var(--paper); padding: 3rem 0;">
+    <section id="faq" class="fade-in-section" style="background: var(--paper); padding: 3rem 0;">
       <div class="container stack-4">
         <h2 class="section-title">Frequently Asked Questions <span class="rule"></span></h2>
         <div class="stack-3">
           <details open class="soft" style="padding: 1.5rem; border-radius: 8px; border: 1px solid var(--line); background: white;">
             <summary style="font-weight: 600; color: var(--navy); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-              What is a Patent Badge?
+              What is a PatentBadge?
               <span style="font-size: 1.2rem; transform: rotate(45deg);">+</span>
             </summary>
             <p style="margin-top: 1rem; color: var(--steel); line-height: 1.6;">
-              A Patent Badge is PCX's standardized certification that a patent has been reviewed, verified, and listed with uniform licensing terms. It signals verified ownership, transparent pricing, and marketplace ranking within technology categories.
+              A PatentBadge is our standardized certification that a patent has been reviewed, verified, and listed with uniform licensing terms. It signals verified ownership, transparent pricing, and marketplace ranking within technology categories.
+            </p>
+          </details>
+          <details class="soft" style="padding: 1.5rem; border-radius: 8px; border: 1px solid var(--line); background: white; margin-top: 1rem;">
+            <summary style="font-weight: 600; color: var(--navy); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+              What is PCX?
+              <span style="font-size: 1.2rem; transform: rotate(45deg);">+</span>
+            </summary>
+            <p style="margin-top: 1rem; color: var(--steel); line-height: 1.6;">
+              PCX (Patent Contract Exchange) is a revolutionary marketplace that connects patent holders with companies seeking licenses. By standardizing patent licensing terms and creating transparent pricing, PCX eliminates months of negotiation and makes patent monetization accessible to all patent holders, not just the largest corporations.
             </p>
           </details>
         </div>
@@ -1487,11 +2065,28 @@
     </section>
   </main>
 
+  <!-- License Terms Modal -->
+  <div class="modal-overlay" id="licenseModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeLicenseTerms()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="modal-header">
+        <h2 id="modalPatentNumber" style="margin: 0; color: #1A1A1A;">Patent License Details</h2>
+      </div>
+      <div id="modalBody">
+        <!-- Content will be populated dynamically -->
+      </div>
+    </div>
+  </div>
+
   <footer class="rule">
     <div class="container grid-3">
       <div>
-        <strong class="serif">PCX by PatentContract.com</strong>
-        <p class="muted">The Patent License Option Contract Exchange.</p>
+        <strong class="serif">PCX by PatentBadge.com</strong>
+        <p class="muted">Transform your patent portfolio into revenue streams through standardized PatentBadges and our automated licensing marketplace.</p>
       </div>
       <div>
         <p><a href="#">Terms</a> · <a href="#">Privacy</a> · <a href="#contact">Contact</a></p>
@@ -1504,6 +2099,25 @@
   </footer>
 
   <script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileToggle = document.getElementById('mobileMenuToggle');
+      const mainNav = document.getElementById('mainNav');
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+          mainNav.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('#mainNav a').forEach(link => {
+          link.addEventListener('click', function() {
+            mainNav.classList.remove('active');
+          });
+        });
+      }
+    });
+
     // Set year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -1643,6 +2257,112 @@
         ok.style.display = 'block';
         form.reset();
       }, 700);
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const fadeInObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optional: stop observing after animation
+          fadeInObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in sections
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+      fadeInObserver.observe(section);
+    });
+
+    // License Terms Modal Functions
+    function showLicenseTerms(patentNumber) {
+      const modal = document.getElementById('licenseModal');
+      const modalBody = document.getElementById('modalBody');
+      const modalTitle = document.getElementById('modalPatentNumber');
+
+      // Find the extra info for this patent
+      const extraInfo = document.querySelector(`[data-extra-info="${patentNumber}"]`);
+
+      if (extraInfo) {
+        modalTitle.textContent = `${patentNumber} - Full License Details`;
+
+        // Build the modal content
+        let content = '';
+
+        const fields = [
+          { key: 'description', label: 'Patent Description' },
+          { key: 'tech-category', label: 'Technology Category' },
+          { key: 'license-type', label: 'License Type' },
+          { key: 'minimum-annual', label: 'Minimum Annual Fee' },
+          { key: 'patent-holder', label: 'Patent Holder' },
+          { key: 'priority-date', label: 'Priority Date' },
+          { key: 'expiration', label: 'Expiration Date' },
+          { key: 'territory', label: 'Territory' }
+        ];
+
+        fields.forEach(field => {
+          const value = extraInfo.querySelector(`[data-field="${field.key}"]`)?.textContent;
+          if (value) {
+            content += `
+              <div class="modal-field">
+                <div class="modal-label">${field.label}</div>
+                <div class="modal-value">${value}</div>
+              </div>
+            `;
+          }
+        });
+
+        modalBody.innerHTML = content;
+        modal.classList.add('active');
+      }
+    }
+
+    function closeLicenseTerms() {
+      const modal = document.getElementById('licenseModal');
+      modal.classList.remove('active');
+    }
+
+    // Close modal on overlay click
+    document.getElementById('licenseModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeLicenseTerms();
+      }
+    });
+
+    // PatentBadge carousel functionality
+    let currentBadge = 1;
+    const totalBadges = 2;
+
+    function showBadge(n) {
+      const badges = document.querySelectorAll('.patent-badge-container[data-badge]');
+
+      if (n > totalBadges) currentBadge = 1;
+      if (n < 1) currentBadge = totalBadges;
+
+      badges.forEach(badge => {
+        badge.style.display = 'none';
+      });
+
+      const activeBadge = document.querySelector(`.patent-badge-container[data-badge="${currentBadge}"]`);
+      if (activeBadge) {
+        activeBadge.style.display = 'block';
+      }
+    }
+
+    document.getElementById('prev-badge').addEventListener('click', () => {
+      currentBadge--;
+      showBadge(currentBadge);
+    });
+
+    document.getElementById('next-badge').addEventListener('click', () => {
+      currentBadge++;
+      showBadge(currentBadge);
     });
   </script>
 </body>
