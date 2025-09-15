@@ -872,6 +872,28 @@
       position: relative;
     }
 
+    /* Golden shimmer animation for watermark */
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 0.03;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(1.05);
+      }
+    }
+
+    /* Sun glint animation for badge */
+    @keyframes sunGlint {
+      0%, 100% {
+        background-position: -200% center;
+      }
+      50% {
+        background-position: 200% center;
+      }
+    }
+
     /* Mobile: Position arrows above/below content */
     @media (max-width: 768px) {
       /* Adjust containers for mobile arrow positioning */
@@ -1450,7 +1472,6 @@
         </svg>
       </button>
       <nav id="mainNav">
-        <a href="#contact">PCX - Request Early Access</a>
         <a href="#contact">Sign Up</a>
         <a href="https://app.patentcontract.com/login" class="nav-login">Login</a>
       </nav>
@@ -1464,9 +1485,8 @@
         <div class="hero-content">
           <div class="stack-3 lead">
             <h1 style="color: white;">Patent Contract Exchange (PCX) & PatentBadge</h1>
-            <p style="color: rgba(255,255,255,0.9);">Securing for patentees exclusive rights to their discoveries.</p>
+            <p style="color: rgba(255,255,255,0.9);">Securing for patentees exclusive rights to their discoveries<br>(Article I, Sec. 8, Cl. 8 U.S. Constitution).</p>
             <div class="cta-row">
-              <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">PCX - Request Early Access</button>
               <a href="#sample" class="btn-secondary">Generate PatentBadge</a>
             </div>
           </div>
@@ -1480,16 +1500,16 @@
     <section id="impact" aria-label="Patent crisis statistics">
       <div class="container">
         <div class="impact-header">
-          <h2 class="impact-title"><span class="impact-number" data-target="95">0%</span> of Patents Remain Unlicensed</h2>
-          <p class="impact-subtitle" style="opacity: 0; transition: opacity 1s ease-in-out;">Only 1.5% of the 2.1 million active US patents have ever generated revenue through licensing or assertion, leaving massive innovation potential untapped.</p>
+          <h2 class="impact-title"><span class="impact-number" data-target="95">0%</span> of US Patents Remain Unlicensed</h2>
+          <p class="impact-subtitle" style="opacity: 0; transition: opacity 1s ease-in-out;">PCX provides uniform pricing and ranking scales for a streamlined patent licensing system capable of handling 30,000 US patents issued monthly.</p>
         </div>
         <div class="stats-grid">
           <div class="stat-card-large">
             <div class="stat-visual">
-              <div class="stat-number-huge">1.5<span class="percent">%</span></div>
+              <div class="stat-number-huge">30,000</div>
             </div>
-            <h3 class="serif">Patents Ever Monetized</h3>
-            <p class="muted">Of the 2.1 million active US patents, only 31,500 have ever generated revenue through licensing or assertion.</p>
+            <h3 class="serif">US Patents Issued Monthly</h3>
+            <p class="muted">The USPTO issues approximately 30,000 new patents each month, requiring scalable infrastructure for efficient licensing and valuation.</p>
           </div>
           <div class="stat-card-large">
             <div class="stat-visual">
@@ -1520,10 +1540,9 @@
           <div class="soft stack-3" style="padding:1rem">
             <h3 class="serif">What it solves</h3>
             <ul class="arrow-list">
-              <li>Months of license negotiation</li>
+              <li>Simplifies IP Due Diligence with PatentBadge</li>
               <li>Opaque patent pricing and terms</li>
-              <li>Difficulty finding relevant patents</li>
-              <li>Complex multi-party agreements</li>
+              <li>Complex multi-party licensing</li>
             </ul>
           </div>
         </div>
@@ -1533,130 +1552,54 @@
     <!-- SAMPLE PATENT BADGE -->
     <section id="sample" style="background: var(--paper); padding: 3rem 0;">
       <div class="container stack-4">
-        <h2 class="section-title">PatentBadge Examples <span class="rule"></span></h2>
+        <h2 class="section-title">PatentBadge <span class="rule"></span></h2>
         <div style="position: relative;">
-          <button class="nav-arrow-external" id="prev-badge" aria-label="Previous badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="arrow-label">Previous</span>
-          </button>
-          <button class="nav-arrow-external" id="next-badge" aria-label="Next badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="arrow-label">Next</span>
-          </button>
         <div class="badge-carousel">
         <!-- Badge 1 -->
         <div class="patent-badge-container" data-badge="1" style="max-width: 400px; margin: 0 auto;">
-          <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative;">
+          <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 2rem 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%); background-size: 200% 200%; animation: sunGlint 8s ease-in-out infinite; pointer-events: none; z-index: 2;"></div>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
+              <img src="Logo-Transparent.png" alt="" style="width: 320px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
+            </div>
             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; margin-top: 0.5rem;">
-              <img src="Logo-Transparent.png" alt="PCX" style="height: 32px; width: auto; opacity: 0.8;">
-              <div style="font-size: 0.7rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; margin-top: 0.5rem; position: relative; z-index: 1;">
+              <img src="Logo-Transparent.png" alt="PCX" style="height: 80px; width: auto; opacity: 0.8;">
+              <div style="font-size: 0.75rem; font-weight: 700; color: #000000; letter-spacing: 1.5px;">PatentBadge</div>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37;">
-              <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654B2</span>
-              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#3 / 1000</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37; position: relative; z-index: 1;">
+              <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654</span>
+              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#1 / 1000</span>
             </div>
-            <div class="badge-details">
+            <div class="badge-details" style="position: relative; z-index: 1;">
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Litigation</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">No History</span>
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Authentication</span>
+                <span style="font-weight: 600; color: #4A7C4E; font-size: 0.75rem; text-align: right;">Live (Indicated)</span>
               </div>
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">SEP Status</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Standard Essential</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Maintenance</span>
-                <span style="font-weight: 600; color: #4A7C4E; font-size: 0.75rem; text-align: right;">✓ 3.5, 7.5 yrs</span>
+                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Ranking</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">#1 / 1000</span>
               </div>
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
                 <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
                 <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">3.5-7.5%</span>
               </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Prior Art</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Reviewed</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Claim Scope</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Broad</span>
-              </div>
-            </div>
-            <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
-              <button class="btn" style="flex: 1;" onclick="showLicenseTerms('US10,987,654B2')">View Full License Terms</button>
-              <button class="btn-secondary" style="flex: 1;">Request License</button>
-            </div>
-            <div data-extra-info="US10,987,654B2" style="display: none;">
-              <div data-field="tech-category">Machine Learning</div>
-              <div data-field="license-type">Non-Exclusive</div>
-              <div data-field="minimum-annual">$50,000</div>
-              <div data-field="patent-holder">TechVentures Inc.</div>
-              <div data-field="priority-date">March 15, 2021</div>
-              <div data-field="expiration">March 15, 2041</div>
-              <div data-field="territory">United States</div>
-              <div data-field="description">Neural Network Architecture for Real-Time Data Processing - This patent covers innovative methods for optimizing neural network performance in edge computing environments, enabling real-time processing with reduced computational requirements.</div>
-            </div>
-          </div>
-        </div>
-        <!-- Badge 2 -->
-        <div class="patent-badge-container" data-badge="2" style="display: none; max-width: 400px; margin: 0 auto;">
-          <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative;">
-            <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; margin-top: 0.5rem;">
-              <img src="Logo-Transparent.png" alt="PCX" style="height: 32px; width: auto; opacity: 0.8;">
-              <div style="font-size: 0.7rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37;">
-              <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US11,234,567B1</span>
-              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#1 / 1000</span>
-            </div>
-            <div class="badge-details">
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Litigation</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">1 Case (Won)</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">SEP Status</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">5G Standard</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Maintenance</span>
-                <span style="font-weight: 600; color: #4A7C4E; font-size: 0.75rem; text-align: right;">✓ All Current</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">2.0-4.5%</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Prior Art</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Validated</span>
-              </div>
-              <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Claim Scope</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">Essential</span>
-              </div>
-            </div>
-            <div style="margin-top: 1.25rem; display: flex; gap: 0.75rem;">
-              <button class="btn" style="flex: 1;" onclick="showLicenseTerms('US11,234,567B1')">View Full License Terms</button>
-              <button class="btn-secondary" style="flex: 1;">Request License</button>
-            </div>
-            <div data-extra-info="US11,234,567B1" style="display: none;">
-              <div data-field="tech-category">Wireless Communications</div>
-              <div data-field="license-type">Standard Essential Patent</div>
-              <div data-field="minimum-annual">$75,000</div>
-              <div data-field="patent-holder">NextGen Networks LLC</div>
-              <div data-field="priority-date">June 22, 2022</div>
-              <div data-field="expiration">June 22, 2042</div>
-              <div data-field="territory">United States</div>
-              <div data-field="description">5G Network Optimization Protocol for IoT Devices - Revolutionary protocol for optimizing 5G network efficiency in high-density IoT deployments, reducing latency by up to 40% while maintaining ultra-low power consumption for battery-operated devices.</div>
             </div>
           </div>
         </div>
         </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(36, 52, 71, 0.05); border-radius: 12px;">
+          <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--navy);">Create Your PatentBadge</h3>
+          <p style="color: var(--steel); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">Upload your patent details and receive a verified Patent Badge that showcases your technology.</p>
+          <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+            <div style="color: #4A7C4E; font-weight: 600;">✓ Live/Dead Indication</div>
+            <div style="color: #4A7C4E; font-weight: 600;">✓ Technology Ranking (1-1,000)</div>
+            <div style="color: #4A7C4E; font-weight: 600;">✓ Automated verification</div>
+          </div>
+          <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">Generate PatentBadge</button>
         </div>
       </div>
     </section>
@@ -1665,7 +1608,26 @@
     <section id="how">
       <div class="container stack-5">
         <h2 class="section-title">Patent License Option Contract Exchange (PCX) <span class="rule"></span></h2>
-        <p style="font-size: 1.25rem; color: var(--steel); max-width: 800px; margin: 0 auto 3rem; padding: 1rem 0; text-align: center; line-height: 1.7;">A marketplace where patent holders list their technologies with standardized terms, and companies efficiently secure the licenses they need without months of negotiation.</p>
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; margin: 3rem 0; opacity: 0; animation: fadeInUp 1s ease-out 0.3s forwards;">
+          <div style="display: flex; justify-content: center;">
+            <div style="width: 150px; height: 150px; border: 3px solid var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              <span style="font-size: 3rem; font-weight: 700; color: var(--navy); letter-spacing: -2px;">PCX</span>
+            </div>
+          </div>
+          <p style="font-size: 1.25rem; color: var(--steel); line-height: 1.7; margin: 0;">A marketplace where patent holders list their technologies with standardized terms, and companies efficiently secure the licenses they need without months of negotiation.</p>
+        </div>
+        <style>
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        </style>
         <div class="grid-3">
           <div class="card stack-2">
             <div class="step-icon">
@@ -1673,12 +1635,12 @@
                 <path d="M9 12h6m-3-3v6m5 5H7a2 2 0 01-2-2V7a2 2 0 012-2h10a2 2 0 012 2v11a2 2 0 01-2 2z"/>
               </svg>
             </div>
-            <h3 class="serif">1) Create Your PatentBadge</h3>
-            <p class="muted">Upload your patent details and receive a verified Patent Badge that showcases your technology.</p>
+            <h3 class="serif">1) Submit Patent to PCX</h3>
+            <p class="muted">Submit your patent to the PCX marketplace for standardized licensing.</p>
             <div class="step-details">
-              <div class="detail-item">✓ USPTO verification</div>
-              <div class="detail-item">✓ Technology ranking</div>
-              <div class="detail-item">✓ Instant validation</div>
+              <div class="detail-item">✓ Quick submission</div>
+              <div class="detail-item">✓ Automated processing</div>
+              <div class="detail-item">✓ Standardized license terms</div>
             </div>
           </div>
           <div class="card stack-2">
@@ -1702,11 +1664,10 @@
               </svg>
             </div>
             <h3 class="serif">3) Monetize Your Patents</h3>
-            <p class="muted">Companies purchase license options through PCX, generating revenue from your patent portfolio.</p>
+            <p class="muted">Speculators purchase license options through PCX, generating revenue from your patent portfolio.</p>
             <div class="step-details">
-              <div class="detail-item">✓ Thousands in monthly revenue</div>
               <div class="detail-item">✓ Multi-party licensing</div>
-              <div class="detail-item">✓ Automated contracts</div>
+              <div class="detail-item">✓ Automated contract formation</div>
             </div>
           </div>
         </div>
@@ -1753,7 +1714,7 @@
                     </select>
                   </div>
                   <div class="form-actions">
-                    <div class="fee-info">Fee: $2,895</div>
+                    <div class="fee-info">Fee: $1,895</div>
                     <button class="btn-primary">Generate Badge</button>
                   </div>
                 </div>
@@ -1762,40 +1723,33 @@
               <!-- Screen 2: Badge Generation -->
               <div class="dashboard-screen" id="screen-badge" style="display: none;">
                 <div class="screen-title">Patent Badge Generated</div>
-                <div class="badge-preview">
-                  <div class="patent-badge-large">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                      <img src="Logo-Transparent.png" alt="PCX" style="height: 28px; width: auto; opacity: 0.8;">
-                      <div style="font-size: 0.6rem; font-weight: 700; color: #D4AF37; letter-spacing: 1.5px;">PCX VERIFIED</div>
+                <div class="badge-preview" style="display: flex; justify-content: center; padding: 1rem;">
+                  <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.5rem 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; max-width: 350px; width: 100%;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%); background-size: 200% 200%; animation: sunGlint 8s ease-in-out infinite; pointer-events: none; z-index: 2;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
+                      <img src="Logo-Transparent.png" alt="" style="width: 280px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
                     </div>
-                    <div class="badge-header">
-                      <span class="patent-number">US10,123,456</span>
-                      <span class="badge-rank">#47 / 1000</span>
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; margin-top: 0.5rem; position: relative; z-index: 1;">
+                      <img src="Logo-Transparent.png" alt="PCX" style="height: 60px; width: auto; opacity: 0.8;">
+                      <div style="font-size: 0.7rem; font-weight: 700; color: #000000; letter-spacing: 1.5px;">PatentBadge</div>
                     </div>
-                    <div class="badge-details">
-                      <div class="badge-row">
-                        <span class="label">Litigation</span>
-                        <span class="value">No History</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37; position: relative; z-index: 1;">
+                      <span style="font-size: 1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654</span>
+                      <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.7rem;">#1 / 1000</span>
+                    </div>
+                    <div style="position: relative; z-index: 1;">
+                      <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                        <span style="color: #8B7355; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;">Authentication</span>
+                        <span style="font-weight: 600; color: #4A7C4E; font-size: 0.7rem; text-align: right;">Live (Indicated)</span>
                       </div>
-                      <div class="badge-row">
-                        <span class="label">SEP Status</span>
-                        <span class="value">Standard Essential</span>
+                      <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
+                        <span style="color: #8B7355; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;">Ranking</span>
+                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">#1 / 1000</span>
                       </div>
-                      <div class="badge-row">
-                        <span class="label">Maintenance</span>
-                        <span class="value success">✓ 3.5, 7.5 yrs</span>
-                      </div>
-                      <div class="badge-row">
-                        <span class="label">Royalty Rate</span>
-                        <span class="value">3.5-7.5%</span>
-                      </div>
-                      <div class="badge-row">
-                        <span class="label">Prior Art</span>
-                        <span class="value">Reviewed</span>
-                      </div>
-                      <div class="badge-row">
-                        <span class="label">Claim Scope</span>
-                        <span class="value">Broad</span>
+                      <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <span style="color: #8B7355; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
+                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">3.5-7.5%</span>
                       </div>
                     </div>
                   </div>
@@ -1893,7 +1847,7 @@
               <path d="M3 12h18"/>
             </svg>
             <h3 class="serif">For Corporations</h3>
-            <p class="muted">Access pre-vetted patents with clear licensing terms. Execute agreements efficiently without lengthy negotiations.</p>
+            <p class="muted">Access pre-vetted patents with clear licensing terms. Execute agreements efficiently without lengthy negotiations. Corporations can also list their patents as patent holders.</p>
           </div>
           <div class="card">
             <svg class="icon" style="width: 32px; height: 32px; color: var(--navy); margin-bottom: 1rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -1926,14 +1880,14 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16M7 12a5 5 0 1010 0 5 5 0 10-10 0z"/></svg>
             <div>
               <strong>Transparent pricing</strong>
-              <div class="muted">$2,895/month for listings, clear license fees.</div>
+              <div class="muted">$1,895 with annual subscription.</div>
             </div>
           </div>
           <div class="trust-item">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l7 4v6c0 4.97-3.11 7.29-7 8-3.89-.71-7-3.03-7-8V6l7-4zm0 6v8"/></svg>
             <div>
-              <strong>60-day review</strong>
-              <div class="muted">Thorough vetting with appeal process.</div>
+              <strong>Review Period</strong>
+              <div class="muted">Review period part of process.</div>
             </div>
           </div>
           <div class="trust-item">
@@ -1986,7 +1940,7 @@
             </div>
             <div>
               <label for="notes">Notes <span class="muted" aria-hidden="true">(optional)</span></label>
-              <textarea id="notes" name="notes" rows="4" placeholder="Tell us about your patent licensing needs"></textarea>
+              <textarea id="notes" name="notes" rows="4" placeholder="Tell us about your patent licensing history"></textarea>
             </div>
             <div class="stack-2" style="margin-top:1rem">
               <button class="btn" type="submit">PCX - Request Early Access</button>
@@ -1997,10 +1951,10 @@
         </div>
         <aside class="callout-box">
           <div class="callout-header">
-            <h3 class="serif">Transform Your Patent Portfolio Today</h3>
+            <h3 class="serif">Authenticate Your Patent Portfolio Today</h3>
           </div>
           <div class="callout-body">
-            <p class="callout-lead">PCX turns your dormant patents into active revenue streams with transparent, automated licensing.</p>
+            <p class="callout-lead">PCX helps to promote patents with transparent, automated licensing.</p>
             <div class="feature-list">
               <div class="feature-item">
                 <svg class="feature-icon" viewBox="0 0 16 16" fill="currentColor">
@@ -2085,8 +2039,12 @@
   <footer class="rule">
     <div class="container grid-3">
       <div>
-        <strong class="serif">PCX by PatentBadge.com</strong>
-        <p class="muted">Transform your patent portfolio into revenue streams through standardized PatentBadges and our automated licensing marketplace.</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <span style="width: 42px; height: 32px; border: 2px solid var(--navy); border-radius: 3px; display: grid; place-items: center; font-size: 0.85rem; color: var(--navy); font-weight: 700; letter-spacing: -0.5px;">PCX</span>
+          <span style="margin: 0 0.4rem; color: var(--steel);">by</span>
+          <span style="font-weight: 700;">PatentBadge.com</span>
+        </div>
+        <p class="muted">PCX helps to promote patents with transparent, automated licensing.</p>
       </div>
       <div>
         <p><a href="#">Terms</a> · <a href="#">Privacy</a> · <a href="#contact">Contact</a></p>
@@ -2335,35 +2293,7 @@
       }
     });
 
-    // PatentBadge carousel functionality
-    let currentBadge = 1;
-    const totalBadges = 2;
-
-    function showBadge(n) {
-      const badges = document.querySelectorAll('.patent-badge-container[data-badge]');
-
-      if (n > totalBadges) currentBadge = 1;
-      if (n < 1) currentBadge = totalBadges;
-
-      badges.forEach(badge => {
-        badge.style.display = 'none';
-      });
-
-      const activeBadge = document.querySelector(`.patent-badge-container[data-badge="${currentBadge}"]`);
-      if (activeBadge) {
-        activeBadge.style.display = 'block';
-      }
-    }
-
-    document.getElementById('prev-badge').addEventListener('click', () => {
-      currentBadge--;
-      showBadge(currentBadge);
-    });
-
-    document.getElementById('next-badge').addEventListener('click', () => {
-      currentBadge++;
-      showBadge(currentBadge);
-    });
+    // PatentBadge - single example only, carousel removed
   </script>
 </body>
 </html>
