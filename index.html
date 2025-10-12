@@ -146,6 +146,29 @@
     }
     @media (max-width:640px){
       .hero{padding:3rem 0 2.5rem; min-height:400px}
+      .hero-disclaimer{
+        position: relative;
+        z-index: 3;
+      }
+      .testimonial-dot {
+        width: 10px;
+        height: 10px;
+        border-width: 1.5px;
+      }
+    }
+    .testimonial-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .testimonial-dot[data-dot="1"] {
+      background: var(--accent);
     }
     .hero::before{
       content:'';
@@ -1442,6 +1465,13 @@
         width: 150px;
       }
 
+      /* Testimonial dots */
+      .testimonial-dot {
+        width: 10px !important;
+        height: 10px !important;
+        border-width: 1.5px !important;
+      }
+
       /* Patent badge */
       .patent-badge-large {
         max-width: 260px;
@@ -1520,7 +1550,7 @@
           </div>
           <img src="Logo-Transparent.png" alt="PCX Logo" class="hero-logo">
         </div>
-        <p style="color: rgba(255,255,255,0.7); font-size: 0.75rem; text-align: center; padding: 0 1rem 0.5rem 1rem; margin: 0;">The above logo is not a logo of the U.S. Patent Trademark Office (USPTO).<br>This website is not affiliated with the USPTO.</p>
+        <p class="hero-disclaimer" style="color: rgba(255,255,255,0.7); font-size: 0.75rem; text-align: center; padding: 0 1rem 0.5rem 1rem; margin: 0;">The above logo is not a logo of the U.S. Patent Trademark Office (USPTO).<br>This website is not affiliated with the USPTO.</p>
       </div>
     </section>
 
@@ -1643,9 +1673,9 @@
 
         <!-- Indicator Dots -->
         <div style="display: flex; justify-content: center; gap: 12px; margin-top: 2.5rem;">
-          <button class="testimonial-dot" data-dot="1" onclick="goToTestimonial(1)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); cursor: pointer; transition: all 0.3s;"></button>
-          <button class="testimonial-dot" data-dot="2" onclick="goToTestimonial(2)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
-          <button class="testimonial-dot" data-dot="3" onclick="goToTestimonial(3)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+          <button class="testimonial-dot" data-dot="1" onclick="goToTestimonial(1)"></button>
+          <button class="testimonial-dot" data-dot="2" onclick="goToTestimonial(2)"></button>
+          <button class="testimonial-dot" data-dot="3" onclick="goToTestimonial(3)"></button>
         </div>
       </div>
     </section>
