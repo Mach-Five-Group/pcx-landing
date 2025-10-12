@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PCX — The Patent License Option Contract Exchange</title>
-  <meta name="description" content="A marketplace where patent holders list their Patent Badge with standardized license terms, so that companies may effectively secure the licenses they need." />
+  <meta name="description" content="A marketplace where patent holders list their Patent Badge with standardized license terms, so that companies may efficiently secure the licenses they need." />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -17,8 +17,8 @@
       --paper:#F9F8F5;      /* page background */
       --steel:#6C757D;      /* muted text */
       --line:#E3E3DF;       /* rules */
-      --accent:#8B2E2E;     /* subtle Americana red */
-      --accent-ink:#651f1f; /* accent pressed */
+      --accent:#C94B4B;     /* refined red */
+      --accent-ink:#A83838; /* accent pressed */
       --focus:#1a73e8;      /* high-contrast focus */
       --ok:#1B5E20;         /* success text */
     }
@@ -125,7 +125,7 @@
        Hero
        ===================== */
     .hero{
-      padding:6rem 0 5.5rem;
+      padding:6rem 0 1rem;
       position:relative;
       background-color: #1a3a52;
       background-image:
@@ -140,7 +140,6 @@
       background-attachment: scroll, scroll, scroll, scroll, fixed;
       overflow:hidden;
       border-bottom: 2px solid rgba(26,58,82,0.3);
-      min-height: 550px;
     }
     @media (max-width:768px){
       .hero{padding:4rem 0 3.5rem; min-height:450px; background-attachment:scroll}
@@ -290,27 +289,38 @@
     }
     .stat-card-large{
       text-align: center;
-      padding: 2rem;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      background: white;
+      border: 2px solid var(--line);
+      border-radius: 16px;
       transition: all 0.3s ease;
       cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
     .stat-card-large:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(36, 52, 71, 0.1);
-      border-color: var(--accent);
-      background: white;
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(36, 52, 71, 0.12);
+      border-color: #1a3a52;
     }
     .stat-visual{
       margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .stat-number-huge{
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: var(--navy);
+      color: white;
       line-height: 1;
+      background: linear-gradient(135deg, #1a3a52 0%, #2a5a7a 100%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(26, 58, 82, 0.25);
     }
     .percent, .months{
       font-size: 1.5rem;
@@ -1482,7 +1492,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <div class="hero-content">
+        <div class="hero-content" style="margin-bottom: 1.5rem;">
           <div class="stack-3 lead">
             <h1 style="color: white; font-size: clamp(2rem, 5vw, 3.2rem);">Patent Contract Exchange (PCX) & Patent Badge</h1>
             <p style="color: rgba(255,255,255,0.9); font-size: clamp(1.15rem, 2vw, 1.35rem);">Securing for patentees exclusive rights to their discoveries<br>(Article I, Sec. 8, Cl. 8 U.S. Constitution).</p>
@@ -1492,6 +1502,7 @@
           </div>
           <img src="Logo-Transparent.png" alt="PCX Logo" class="hero-logo">
         </div>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.75rem; text-align: center; padding: 0 1rem 0.5rem 1rem; margin: 0;">The above logo is not a logo of the U.S. Patent Trademark Office (USPTO).<br>This website is not affiliated with the USPTO.</p>
       </div>
     </section>
 
@@ -1504,19 +1515,19 @@
             <div class="stat-visual">
               <div class="stat-number-huge">1</div>
             </div>
-            <h3 class="serif" style="color: var(--accent);">Authenticate (Live/Dead Indicator)</h3>
+            <h3 class="serif" style="color: var(--navy);">Authenticate (Live/Dead Indicator)</h3>
           </div>
           <div class="stat-card-large">
             <div class="stat-visual">
               <div class="stat-number-huge">2</div>
             </div>
-            <h3 class="serif" style="color: var(--accent);">Obtain Fair Royalty Rate / Standard Licensing Agreement</h3>
+            <h3 class="serif" style="color: var(--navy);">Obtain Fair Royalty Rate / Standard Licensing Agreement</h3>
           </div>
           <div class="stat-card-large">
             <div class="stat-visual">
               <div class="stat-number-huge">3</div>
             </div>
-            <h3 class="serif" style="color: var(--accent);">Technology Ranking<br>(1-1,000)</h3>
+            <h3 class="serif" style="color: var(--navy);">Patent Ranking<br>(1-1,000)</h3>
           </div>
         </div>
 
@@ -1527,15 +1538,16 @@
               <li>Patent holders seeking to monetize IP</li>
               <li>Corporations needing technology licenses</li>
               <li>In-house and outside counsel</li>
-              <li>Patent Owners and Licensers</li>
+              <li>Patent Owners and Licensees</li>
             </ul>
           </div>
           <div class="soft stack-3" style="padding:1rem">
             <h3 class="serif">What It Solves</h3>
             <ul class="arrow-list">
               <li>Simplifies IP Due Diligence</li>
-              <li>Opaque patent pricing and terms</li>
+              <li>Opaque patent license pricing and terms</li>
               <li>Complex multi-party licensing</li>
+              <li>PCX provides a neutral platform to monetize patents</li>
             </ul>
           </div>
         </div>
@@ -1578,8 +1590,8 @@
         <div class="testimonial-wrapper" style="position: relative; min-height: 300px; display: flex; align-items: center; justify-content: center; padding: 0 60px;">
           <!-- Testimonial Cards -->
           <div class="testimonial-card" data-testimonial="1" style="position: absolute; width: 100%; max-width: 850px; background: white; padding: 4rem 3rem 3rem; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-left: 6px solid var(--accent); opacity: 1; transform: scale(1); transition: opacity 0.5s ease, transform 0.5s ease;">
-            <p style="font-size: clamp(1.4rem, 2.5vw, 1.75rem); line-height: 1.65; color: var(--navy); font-style: italic; margin: 0 0 1.5rem 0; text-align: center;">
-              "Patent Badge gold plated my license, making licensing a snap with immediate results!"
+            <p style="font-size: clamp(1.3rem, 2.3vw, 1.65rem); line-height: 1.65; color: var(--navy); font-style: italic; margin: 0 0 1.5rem 0; text-align: center;">
+              "Patent Badge gold plated my patent, making licensing a snap"
             </p>
             <p style="text-align: center; font-size: 0.95rem; color: var(--steel); margin: 0;">— David Martinez, Patent Holder</p>
           </div>
@@ -1588,6 +1600,12 @@
               "This is a great due diligence tool!"
             </p>
             <p style="text-align: center; font-size: 0.95rem; color: var(--steel); margin: 0;">— Sarah Chen, IP Counsel</p>
+          </div>
+          <div class="testimonial-card" data-testimonial="3" style="position: absolute; width: 100%; max-width: 850px; background: white; padding: 4rem 3rem 3rem; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border-left: 6px solid var(--accent); opacity: 0; transform: scale(0.95); transition: opacity 0.5s ease, transform 0.5s ease;">
+            <p style="font-size: clamp(1.4rem, 2.5vw, 1.75rem); line-height: 1.65; color: var(--navy); font-style: italic; margin: 0 0 1.5rem 0; text-align: center;">
+              "Immediate results, very fast!"
+            </p>
+            <p style="text-align: center; font-size: 0.95rem; color: var(--steel); margin: 0;">— Frank Nguyen, IP Counsel</p>
           </div>
 
           <!-- Previous Arrow -->
@@ -1609,6 +1627,7 @@
         <div style="display: flex; justify-content: center; gap: 12px; margin-top: 2.5rem;">
           <button class="testimonial-dot" data-dot="1" onclick="goToTestimonial(1)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); cursor: pointer; transition: all 0.3s;"></button>
           <button class="testimonial-dot" data-dot="2" onclick="goToTestimonial(2)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
+          <button class="testimonial-dot" data-dot="3" onclick="goToTestimonial(3)" style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: transparent; cursor: pointer; transition: all 0.3s;"></button>
         </div>
       </div>
     </section>
@@ -1643,13 +1662,13 @@
       }
 
       function nextTestimonial() {
-        currentTestimonial = currentTestimonial === 2 ? 1 : currentTestimonial + 1;
+        currentTestimonial = currentTestimonial === 3 ? 1 : currentTestimonial + 1;
         updateTestimonials();
         resetInterval();
       }
 
       function previousTestimonial() {
-        currentTestimonial = currentTestimonial === 1 ? 2 : currentTestimonial - 1;
+        currentTestimonial = currentTestimonial === 1 ? 3 : currentTestimonial - 1;
         updateTestimonials();
         resetInterval();
       }
@@ -1682,17 +1701,17 @@
         <div class="patent-badge-container" data-badge="1" style="max-width: 400px; margin: 0 auto;">
           <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 2rem 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%); background-size: 200% 200%; animation: sunGlint 8s ease-in-out infinite; pointer-events: none; z-index: 2;"></div>
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
-              <img src="Logo-Transparent.png" alt="" style="width: 320px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
+            <div style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
+              <img src="Logo-Transparent.png" alt="" style="width: 450px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
             </div>
             <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; margin-top: 0.5rem; position: relative; z-index: 1;">
-              <img src="Logo-Transparent.png" alt="PCX" style="height: 80px; width: auto; opacity: 0.8;">
-              <div style="font-size: 0.75rem; font-weight: 700; color: #000000; letter-spacing: 1.5px;">Patent Badge</div>
+            <div style="text-align: center; margin-bottom: 1.25rem; margin-top: 0.5rem; position: relative; z-index: 1;">
+              <img src="Logo-Transparent.png" alt="PCX" style="height: 140px; width: auto; opacity: 0.8; display: block; margin: 0 auto;">
+              <div style="font-size: 1.05rem; font-weight: 700; color: #000000; letter-spacing: 1.5px; margin-top: 0.5rem;">Patent Badge</div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37; position: relative; z-index: 1;">
               <span style="font-size: 1.1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654</span>
-              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#1 / 1000</span>
+              <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">#505 / 1,000</span>
             </div>
             <div class="badge-details" style="position: relative; z-index: 1;">
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
@@ -1701,12 +1720,15 @@
               </div>
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
                 <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Ranking</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">#1 / 1000</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">#505 / 1,000</span>
               </div>
               <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
                 <span style="color: #8B7355; font-size: 0.7rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
-                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">3.5-7.5%</span>
+                <span style="font-weight: 600; color: #2C2416; font-size: 0.75rem; text-align: right;">5-7%</span>
               </div>
+            </div>
+            <div style="margin-top: 1rem; text-align: center; position: relative; z-index: 1;">
+              <p style="font-size: 0.65rem; color: #8B7355; margin: 0;">*Patent Badge is not affiliated with the USPTO.</p>
             </div>
           </div>
         </div>
@@ -1719,7 +1741,7 @@
           <p style="color: var(--steel); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">Upload your patent number and receive a Patent Badge that showcases your patent by technology category.</p>
           <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
             <div style="color: #4A7C4E; font-weight: 600;">✓ Live/Dead Indication</div>
-            <div style="color: #4A7C4E; font-weight: 600;">✓ Technology Ranking (1-1,000)</div>
+            <div style="color: #4A7C4E; font-weight: 600;">✓ Patent Ranking (1-1,000)</div>
           </div>
           <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">Generate Patent Badge</button>
         </div>
@@ -1736,7 +1758,7 @@
               <span style="font-size: 3rem; font-weight: 700; color: var(--navy); letter-spacing: -2px;">PCX</span>
             </div>
           </div>
-          <p style="font-size: 1.25rem; color: var(--steel); line-height: 1.7; margin: 0;">A marketplace where patent holders list their Patent Badge with standardized license terms, so that companies may effectively secure the licenses they need without months of negotiation.</p>
+          <p style="font-size: 1.25rem; color: var(--steel); line-height: 1.7; margin: 0;">A marketplace where patent holders list their Patent Badge with standardized license terms, so that companies may efficiently secure the licenses they need without months of negotiation.</p>
         </div>
         <style>
           @keyframes fadeInUp {
@@ -1761,6 +1783,7 @@
             <p class="muted">Submit your patent to the PCX marketplace for standardized licensing.</p>
             <div class="step-details">
               <div class="detail-item">✓ Secure Database</div>
+              <div class="detail-item">✓ Submission to View Patent Badge is Confidential</div>
               <div class="detail-item">✓ Automated Analysis and Ranking</div>
               <div class="detail-item">✓ Standardized License Terms</div>
             </div>
@@ -1774,7 +1797,7 @@
             <h3 class="serif">2) List on PCX Marketplace</h3>
             <p class="muted">Your Patent Badge posted on the PCX marketplace.</p>
             <div class="step-details">
-              <div class="detail-item">✓ Royalty Rates</div>
+              <div class="detail-item">✓ Fair Royalty Rates</div>
               <div class="detail-item">✓ Pricing Based on Ranking Score</div>
             </div>
           </div>
@@ -1785,7 +1808,7 @@
               </svg>
             </div>
             <h3 class="serif">3) Monetize Patents</h3>
-            <p class="muted">Speculators purchase license options through PCX, generating revenue from patent portfolio.</p>
+            <p class="muted">Speculators purchase license option contracts through PCX and pay premiums, generating revenue from patent portfolio.</p>
             <div class="step-details">
               <div class="detail-item">✓ Multi-Party Licensing Using Standardized Licensing Terms</div>
             </div>
@@ -1845,17 +1868,17 @@
                 <div class="badge-preview" style="display: flex; justify-content: center; padding: 1rem;">
                   <div style="background: #FFFFFF; border: 2px solid #D4AF37; border-radius: 8px; padding: 1.5rem 1.25rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); position: relative; overflow: hidden; max-width: 350px; width: 100%;">
                     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(115deg, transparent 40%, rgba(255, 215, 0, 0.1) 50%, transparent 60%); background-size: 200% 200%; animation: sunGlint 8s ease-in-out infinite; pointer-events: none; z-index: 2;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
-                      <img src="Logo-Transparent.png" alt="" style="width: 280px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
+                    <div style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.04; pointer-events: none;">
+                      <img src="Logo-Transparent.png" alt="" style="width: 400px; height: auto; filter: sepia(1) saturate(2) hue-rotate(30deg) brightness(1.2);">
                     </div>
                     <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%); border-radius: 8px 8px 0 0;"></div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; margin-top: 0.5rem; position: relative; z-index: 1;">
-                      <img src="Logo-Transparent.png" alt="PCX" style="height: 60px; width: auto; opacity: 0.8;">
-                      <div style="font-size: 0.7rem; font-weight: 700; color: #000000; letter-spacing: 1.5px;">Patent Badge</div>
+                    <div style="text-align: center; margin-bottom: 1rem; margin-top: 0.5rem; position: relative; z-index: 1;">
+                      <img src="Logo-Transparent.png" alt="PCX" style="height: 110px; width: auto; opacity: 0.8; display: block; margin: 0 auto;">
+                      <div style="font-size: 0.85rem; font-weight: 700; color: #000000; letter-spacing: 1.5px; margin-top: 0.5rem;">Patent Badge</div>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid #D4AF37; position: relative; z-index: 1;">
                       <span style="font-size: 1rem; font-weight: 700; color: #1A1A1A; font-family: 'Georgia', serif;">US10,987,654</span>
-                      <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.7rem;">#1 / 1000</span>
+                      <span style="background: #D4AF37; color: white; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 600; font-size: 0.7rem;">#505 / 1,000</span>
                     </div>
                     <div style="position: relative; z-index: 1;">
                       <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
@@ -1864,12 +1887,15 @@
                       </div>
                       <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
                         <span style="color: #8B7355; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;">Ranking</span>
-                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">#1 / 1000</span>
+                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">#505 / 1,000</span>
                       </div>
-                      <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                      <div style="padding: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid rgba(212, 175, 55, 0.15);">
                         <span style="color: #8B7355; font-size: 0.65rem; font-weight: 600; text-transform: uppercase;">Royalty Rate</span>
-                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">3.5-7.5%</span>
+                        <span style="font-weight: 600; color: #2C2416; font-size: 0.7rem; text-align: right;">5-7%</span>
                       </div>
+                    </div>
+                    <div style="margin-top: 1rem; text-align: center; position: relative; z-index: 1;">
+                      <p style="font-size: 0.6rem; color: #8B7355; margin: 0;">*Patent Badge is not affiliated with the USPTO.</p>
                     </div>
                   </div>
                 </div>
@@ -1972,22 +1998,24 @@
       </div>
     </section>
 
-    <!-- SECURITY & COMPLIANCE -->
-    <section id="security">
+    <!-- FAQs -->
+    <section id="faqs">
       <div class="container stack-4">
-        <h2 class="section-title">Security & Compliance <span class="rule"></span></h2>
+        <h2 class="section-title">FAQs <span class="rule"></span></h2>
+
+        <h3 class="serif" style="margin-top: 2rem; margin-bottom: 1.5rem;">Security & Compliance</h3>
         <div class="grid-2">
           <div class="trust-item">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l8 4v6c0 5-3.5 7-8 8-4.5-1-8-3-8-8V7l8-4z"/></svg>
             <div>
-              <strong>Standardized terms</strong>
+              <strong>What are the standardized terms?</strong>
               <div class="muted">Uniform licensing agreements across all patents.</div>
             </div>
           </div>
           <div class="trust-item">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l7 4v6c0 4.97-3.11 7.29-7 8-3.89-.71-7-3.03-7-8V6l7-4zm0 6v8"/></svg>
             <div>
-              <strong>Review Period</strong>
+              <strong>What is the review period?</strong>
               <div class="muted">Review period part of process.</div>
             </div>
           </div>
@@ -2142,7 +2170,7 @@
       </div>
       <div>
         <p><a href="#">Terms</a> · <a href="#">Privacy</a> · <a href="#contact">Contact</a></p>
-        <p class="muted"><small>© <span id="yr"></span> Remote IP Corp. All rights reserved.<br>Powered by <a href="https://www.machfivegroup.com" target="_blank" rel="noopener noreferrer">Mach Five Group</a>.</small></p>
+        <p class="muted"><small>© <span id="yr"></span> A Eye P, Inc. All rights reserved.<br>Powered by <a href="https://www.machfivegroup.com" target="_blank" rel="noopener noreferrer">Mach Five Group</a>.</small></p>
       </div>
       <div>
         <p class="muted"><small><!-- TODO: Adjust accent color to owner palette; swap icons if preferred. --></small></p>
