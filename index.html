@@ -321,6 +321,24 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 12px rgba(26, 58, 82, 0.25);
+      opacity: 0;
+      transform: scale(0.5);
+      animation: scaleIn 0.5s ease-out forwards;
+    }
+    .stat-card-large:nth-child(1) .stat-number-huge{
+      animation-delay: 0.2s;
+    }
+    .stat-card-large:nth-child(2) .stat-number-huge{
+      animation-delay: 0.4s;
+    }
+    .stat-card-large:nth-child(3) .stat-number-huge{
+      animation-delay: 0.6s;
+    }
+    @keyframes scaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
     .percent, .months{
       font-size: 1.5rem;
@@ -1471,9 +1489,9 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header>
     <div class="container nav" role="navigation" aria-label="Primary">
-      <div class="brand" aria-label="Site brand">
+      <div class="brand" aria-label="Site brand" style="gap: 0.35rem;">
         <span>PatentBadge.com</span>
-        <span style="margin: 0 0.4rem; color: var(--steel);">by</span>
+        <span style="color: var(--steel);">by</span>
         <span class="brand-mark" aria-hidden="true">PCX</span>
       </div>
       <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
@@ -1740,8 +1758,8 @@
           <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--navy);">Create Your Patent Badge</h3>
           <p style="color: var(--steel); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6;">Upload your patent number and receive a Patent Badge that showcases your patent by technology category.</p>
           <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
-            <div style="color: #4A7C4E; font-weight: 600;">✓ Live/Dead Indication</div>
-            <div style="color: #4A7C4E; font-weight: 600;">✓ Patent Ranking (1-1,000)</div>
+            <div class="badge-feature" style="color: #4A7C4E; font-weight: 600; opacity: 0; transform: scale(0.5); animation: scaleIn 0.5s ease-out 0.2s forwards;">✓ Live/Dead Indication</div>
+            <div class="badge-feature" style="color: #4A7C4E; font-weight: 600; opacity: 0; transform: scale(0.5); animation: scaleIn 0.5s ease-out 0.4s forwards;">✓ Patent Ranking (1-1,000)</div>
           </div>
           <button class="btn" onclick="document.getElementById('lead').scrollIntoView({behavior:'smooth'});">Generate Patent Badge</button>
         </div>
@@ -2015,7 +2033,7 @@
           <div class="trust-item">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l7 4v6c0 4.97-3.11 7.29-7 8-3.89-.71-7-3.03-7-8V6l7-4zm0 6v8"/></svg>
             <div>
-              <strong>What is the review period?</strong>
+              <strong>Is there a review period?</strong>
               <div class="muted">Review period part of process.</div>
             </div>
           </div>
@@ -2161,9 +2179,9 @@
   <footer class="rule">
     <div class="container grid-3">
       <div>
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.75rem;">
           <span style="font-weight: 700;">PatentBadge.com</span>
-          <span style="margin: 0 0.4rem; color: var(--steel);">by</span>
+          <span style="color: var(--steel);">by</span>
           <span style="width: 42px; height: 32px; border: 2px solid var(--navy); border-radius: 3px; display: grid; place-items: center; font-size: 0.85rem; color: var(--navy); font-weight: 700; letter-spacing: -0.5px;">PCX</span>
         </div>
         <p class="muted">PCX helps to secure for patentees exclusive rights with transparent, automated licensing.</p>
